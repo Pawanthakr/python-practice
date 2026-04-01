@@ -1,4 +1,5 @@
 import ctypes
+from operator import index
 
 class Array:
     def __init__(self):
@@ -10,9 +11,9 @@ class Array:
         return self.n    
     
     def __str__(self):
-        result =' '
+        result =''
         for i in range(self.n):
-            result += str(self.A[i])  + ','
+            result += str(self.A[i]) + ','
         return '[' + result[:-1] + ']'
     
 
@@ -24,9 +25,72 @@ class Array:
     def append(self, item):
         if self.n == self.size:
             self.__resize(self.size*2)
-        
         self.A[self.n] = item
         self.n += 1
+    
+    def pop(self):
+        if self.n == 0:
+            return 'Indexerror: Array is empty'
+        else:
+            item = self.A[self.n-1]
+            self.n -= 1
+            return item
+            
+    def clear(self):
+        self.size = 1
+        self.n = 0
+
+    def find(self, item):
+        for i in range(self.n):
+            if self.A[i] == item:
+                return i
+        return "Item not found in array"  
+
+    def insert(self, index, item):
+        if index < 0 or index > self.n:
+            return 'Indexerror: Index out of range'
+        if self.n == self.size:
+            self.__resize(self.size*2)
+        for i in range(self.n, index, -1):
+            self.A[i] = self.A[i-1]
+        self.A[index] = item
+        self.n += 1
+
+    def __delitem__(self, index):
+        for i in range(index, self.n-1):
+            self.A[i] = self.A[i+1]
+        self.n -= 1
+      
+    def remove(self, item):
+        self.__delitem__(self.find(item))
+       
+    def sort(self):
+      for i in range(self.n):
+          if self.A[i]>self.A[i+1]:
+            return self.A[i]
+          else:
+            return self.A[i+1]
+          
+    def max(self):
+        max=self.A[0]
+        for num in self.A:
+            if num > max:
+                max = num
+        return max
+                
+    def min(self):
+        min=self.A[0]
+        for num in self.A:
+            if num < min:
+                min = num
+        return min
+    
+
+    def sum(self):
+        total = 0
+        for num in self.A:
+            total += num
+        return total
 
     def __resize(self, new_capacity):
         B = self.__make_array(new_capacity)
@@ -42,10 +106,22 @@ class Array:
  
 
 l=Array()
-l.append("Hello")
-l.append(3.14)
-l.append(True)   
+l.append(1)
+l.append(2)
+l.append(3)   
 l.append(4)
-print(str(l))
-print(l[0])
-print(l[1])
+# print(str(l))
+# print(l[0])
+# print(l[1])
+#l.pop()
+# l.clear()
+# print(l.find(4))
+# l.insert(1,23)
+# del l[1]
+# l.remove(3.14))
+# l.sort()
+# print(l.max())
+# print(l.min())
+# print(l.sum())
+l.extend(22,32,11)
+print(l)
