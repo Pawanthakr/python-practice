@@ -22,6 +22,7 @@ class Array:
            return self.A[index]
         else:
             return 'Indexerror: Index out of range'
+        
     def append(self, item):
         if self.n == self.size:
             self.__resize(self.size*2)
@@ -91,6 +92,11 @@ class Array:
         for num in self.A:
             total += num
         return total
+    
+    def extend(self, *items):
+     for item in items:
+        self.append(item)
+
 
     def __resize(self, new_capacity):
         B = self.__make_array(new_capacity)
@@ -123,5 +129,5 @@ l.append(4)
 # print(l.max())
 # print(l.min())
 # print(l.sum())
-l.extend(22,32,11)
+l.extend(22,33,55)
 print(l)
