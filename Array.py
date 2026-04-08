@@ -68,12 +68,14 @@
 #         self.__delitem__(self.find(item))
        
 #     def sort(self):
-#       for i in range(self.n):
-#           if self.A[i]>self.A[i+1]:
-#             return self.A[i]
-#           else:
-#             return self.A[i+1]
+#       for i in range(0,self.n):
+#         for j in range(i+1,self.n):
+#             if self.A[i]>self.A[j]:
+#                 arr=self.A[i]
+#                 self.A[i]=self.A[j]
+#                 self.A[j]=arr
           
+      
 #     def max(self):
 #         max=self.A[0]
 #         for num in self.A:
@@ -114,10 +116,12 @@
  
 
 # l=Array()
-# l.append(1)
-# l.append(2)
-# l.append(3)   
+# l.append(5)
+# l.append(22)
+# l.append(31)   
 # l.append(4)
+# l.sort()
+# print(l)
 # print(str(l))
 # print(l[0])
 # print(l[1])
@@ -154,33 +158,60 @@ class Linkendlist:
     def __len__ (self):
         return self.n 
     
+    def __str__(self):
+       curr=self.head
+       result=' '
+       while curr!=None:
+            result+=str(curr.value) + '-->'
+            curr=curr.next
+       return result[:-3]  
+    
     def insert_head(self,value):
         new_node=node(value)
         new_node.next=self.head
         self.head=new_node
         self.n+=1
-
-    def __str__(self):
+    def append(self,value):
+       new_node=node(value)
+       if self.head==None:
+          self.head=new_node
+          self.n+=1
+          return
+       curr=self.head
+       while curr.next!=None:    
+         curr=curr.next
+       curr.next=new_node
+       self.n+=1 
+    
+    def middle(self,after,value):
+        new_node=node(value)
         curr=self.head
-        result=' '
         while curr!=None:
-            result+=str(curr.value) + '-->'
-            curr=curr.next
-        return result[:-3]
+          if curr.value == after:
+              break
+          curr=curr.next
+        if curr.next!=None:
+            new_node.next=curr.next
+            curr.next=new_node
+            self.n+=1
+        else:
+            "Item not found"       
 
-
-
-
-
-
-
-
+    def clear(self):
+           self.head=None
+           self.n=0
+        
+           
 
 
 l=Linkendlist()
-l.insert_head(22)
-l.insert_head(23)
-l.insert_head(24)
-
-print(l)    
-
+l.insert_head(1)
+l.insert_head(2)
+l.insert_head(3)
+l.insert_head(4)
+# l.append(1)
+# print(l)    
+# l.middle(3,5)
+# print(l)
+# l.clear()
+print(l)
