@@ -68,14 +68,12 @@
 #         self.__delitem__(self.find(item))
        
 #     def sort(self):
-#       for i in range(0,self.n):
-#         for j in range(i+1,self.n):
-#             if self.A[i]>self.A[j]:
-#                 arr=self.A[i]
-#                 self.A[i]=self.A[j]
-#                 self.A[j]=arr
-          
-      
+#       for i in range(self.n):
+#           if self.A[i]>self.A[i+1]:
+#             return self.A[i]
+#           else:
+#             return self.A[i+1]
+#           
 #     def max(self):
 #         max=self.A[0]
 #         for num in self.A:
@@ -116,12 +114,10 @@
  
 
 # l=Array()
-# l.append(5)
-# l.append(22)
-# l.append(31)   
+# l.append(1)
+# l.append(2)
+# l.append(3)   
 # l.append(4)
-# l.sort()
-# print(l)
 # print(str(l))
 # print(l[0])
 # print(l[1])
@@ -140,120 +136,53 @@
 # print(l)
 
 
-# <--LinnkedList-->
+# Q1) Find the sum of first N numbers.
 
-class node:
+# def sum_of_first_n_numbers(sum):
+#     total = 0
+#     for i in range(1, len(sum)+1):
+#         total += i
+#     return total
 
-    def __init__(self,value):
-        self.value=value
-        self.next=None
+# sum = [1, 2, 3, 4, 5]  
+# result = sum_of_first_n_numbers(sum)
 
+# print(f"The sum of first {sum} numbers is: {result}")
 
-class Linkendlist:
+# Q2) Find the factorial of a number.
 
-    def __init__(self):
-        self.head=None
-        self.n=0
+# def factorial(n):
+#     fact=1
+#     for i in range(1, n+1):
+#         fact=fact*i
+#     return fact
 
-    def __len__ (self):
-        return self.n 
-    
-    def __str__(self):
-       curr=self.head
-       result=' '
-       while curr!=None:
-            result+=str(curr.value) + '-->'
-            curr=curr.next
-       return result[:-3]  
-    
-    def insert_head(self,value):
-        new_node=node(value)
-        new_node.next=self.head
-        self.head=new_node
-        self.n+=1
-    def append(self,value):
-       new_node=node(value)
-       if self.head==None:
-          self.head=new_node
-          self.n+=1
-          return
-       curr=self.head
-       while curr.next!=None:    
-         curr=curr.next
-       curr.next=new_node
-       self.n+=1 
-    
-    def middle(self,after,value):
-        new_node=node(value)
-        curr=self.head
-        while curr!=None:
-          if curr.value == after:
-              break
-          curr=curr.next
-        if curr.next!=None:
-            new_node.next=curr.next
-            curr.next=new_node
-            self.n+=1
-        else:
-            "Item not found"       
+# n=5
+# result=factorial(n)
+# print(result)
 
-    def clear(self):
-           self.head=None
-           self.n=0
-        
-    def delete_head(self):
-        if self.head==None:
-            return"Empty LL"
-        self.head=self.head.next   
-        self.n-=1        
-    def pop(self):
-        curr=self.head
-        if curr.next==None:
-            return self.delete_head()
-        
-        while curr.next.next!=None:
-           curr=curr.next
-        curr.next=None
-        self.n-=1
-    def remove(self,value):
-        curr=self.head
-        if self.head == None:
-            return "Empty LL"
-        if self.head.value== value:
-            return self.delete_head()
-        while curr.next!=None:
-         if curr.next.value==value:
-          break
-         curr=curr.next
-        if curr.next == None:
-         return"Not found"
-        else:
-            curr.next=curr.next.next
+# Q3) Count the digits in a number.
 
-    def search(self,value):
-        curr=self.head
-        pos=0
-        while curr!=None:
-            if curr.value == value:
-                return pos
-            curr=curr.next
-            pos+=1
-        return "Value not found"
+# def count_the_digits(num):
+#     count = 0
+#     while num > 0:
+#         count += 1
+#         num = num // 10
+#     return count
+
+# num=2123
+# result=count_the_digits(num)
+# print(result)
+
+# Q5) Reverse a number.
  
-l=Linkendlist()
-l.insert_head(1)
-l.insert_head(2)
-l.insert_head(3)
-l.insert_head(4)
-# l.append(1)
-# print(l)    
-# l.middle(3,5)
-# print(l)
-# l.clear()
-# l.delete_head()
-# l.pop()
-# l.remove(15)
-# print(l)
-print(l.search(5))
-
- 
+# def Reverse_num(num):
+#     rev=0
+#     while num>0:
+#         digit=num%10
+#         rev=(rev*10)+digit
+#         num=num//10
+#     return rev  
+# num=1234
+# result=Reverse_num(num) 
+# print(result)
